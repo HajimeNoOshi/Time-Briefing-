@@ -5,7 +5,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+      background: black(to right, #121111, #f1f8e9);
       color: #222;
       padding: 20px;
       max-width: 600px;
