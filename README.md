@@ -5,8 +5,8 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: black(to right, #121111, #f1f8e9);
-      color: #222;
+      background: black(to right, #121111, #121111);
+      color: #121111;
       padding: 20px;
       max-width: 600px;
       margin: 0 auto;
