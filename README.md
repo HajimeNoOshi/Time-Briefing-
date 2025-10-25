@@ -24,14 +24,18 @@
 </head>
 <body>
   <h2 id="greeting">MAAM GOOD MORNING MAAM SIR GOOD MORNING SIR!</h2>
-  <p id="officer-name">C/PVT (name of cadet) asking for permission to make a statement on behalf of the medics unit for the
-  assignment to send safety precautions every 20 minutes.</p>
-  <p id="Weather-forecast">Weather forecast for this morning according to DOST-PAGASA, Metro Manila will experience.</p>
+  <p id="officer-name">
+    C/PVT (name of cadet) asking for permission to make a statement on behalf of the medics unit for the
+    assignment to send safety precautions every 20 minutes.
+  </p>
+  <p id="Weather-forecast">
+    Weather forecast for this morning according to DOST-PAGASA, Metro Manila will experience.
+  </p>
 
-  <div class="weather-box">
+  <div class="weather-box" id="weather-box">
     <p><b>Temperature:</b> <span id="temp"></span> °C</p>
     <p><b>Heat Index:</b> <span id="heat"></span> °C</p>
-    <p><b>Wind:</b> <span id="wind"></span> direction-km/h</p>
+    <p><b>Wind:</b> <span id="wind"></span> km/h</p>
     <p><b>(POP):</b> <span id="pop"></span> mm</p>
     <p><b>Max UV Index:</b> <span id="uv"></span></p>
   </div>
@@ -43,29 +47,38 @@
 
   <script>
     async function getWeather() {
-      const url = "https://api.open-meteo.com/v1/forecast?latitude=14.6&longitude=121.0&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,uv_index";
-      const response = await fetch(url);
-      const data = await response.json();
+      try {
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=14.6&longitude=121.0&current_weather=true";
+        const response = await fetch(url);
+        const data = await response.json();
 
-      const current = data.current;
-      document.getElementById("temp").textContent = current.temperature_2m;
-      document.getElementById("heat").textContent = current.apparent_temperature;
-      document.getElementById("wind").textContent = current.wind_speed_10m;
-      document.getElementById("pop").textContent = current.precipitation;
-      document.getElementById("uv").textContent = current.uv_index;
+        // Open-Meteo returns current_weather object
+        const current = data.current_weather;
+        document.getElementById("temp").textContent = current.temperature;
+        document.getElementById("heat").textContent = current.temperature; // Open-Meteo does not provide apparent temp directly
+        document.getElementById("wind").textContent = current.windspeed;
+        document.getElementById("pop").textContent = "N/A"; // optional, POP not in this endpoint
+        document.getElementById("uv").textContent = "N/A";  // optional, UV index not in this endpoint
 
-      // Manila time
-      const now = new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" });
-      document.getElementById("time").textContent = "📅 Manila Time: " + now;
+        // Manila time
+        const now = new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" });
+        document.getElementById("time").textContent = "📅 Manila Time: " + now;
 
-      // Valid until (20 mins later)
-      const validUntil = new Date(Date.now() + 20 * 60000);
-      document.getElementById("valid-until").textContent =
-        "Valid until: " + validUntil.toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" });
+        // Valid until (20 mins later)
+        const validUntil = new Date(Date.now() + 20 * 60000);
+        document.getElementById("valid-until").textContent =
+          "Valid until: " + validUntil.toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" });
+      } catch (err) {
+        console.error("Error fetching weather:", err);
+        document.getElementById("weather-box").textContent = "Error loading weather data.";
       }
     }
-      
+
+    // Call once immediately
     getWeather();
+
+    // Auto-update every 20 minutes
+    setInterval(getWeather, 20 * 60 * 1000);
   </script>
 </body>
 </html>
