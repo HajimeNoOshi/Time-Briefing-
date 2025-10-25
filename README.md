@@ -62,6 +62,8 @@
       const validUntil = new Date(Date.now() + 20 * 60000);
       document.getElementById("valid-until").textContent =
         "Valid until: " + validUntil.toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" });
+      }
+    }
       
     getWeather();
   </script>
