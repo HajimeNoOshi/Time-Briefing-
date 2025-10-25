@@ -62,18 +62,7 @@
       const validUntil = new Date(Date.now() + 20 * 60000);
       document.getElementById("valid-until").textContent =
         "Valid until: " + validUntil.toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" });
-    }
-
-    // Greeting update
-    function updateGreeting() {
-      const hour = new Date().getHours();
-      let greeting = "Good Evening";
-      if (hour < 12) greeting = "Good Morning";
-      else if (hour < 18) greeting = "Good Afternoon";
-      document.getElementById("greeting").textContent = greeting + ", Officer!";
-    }
-
-    updateGreeting();
+      
     getWeather();
   </script>
 </body>
