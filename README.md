@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,21 +23,23 @@
   </style>
 </head>
 <body>
-  <h2 id="greeting">Good Evening, Officer!</h2>
-  <p id="officer-name">Name: Officer Santos</p>
+  <h2 id="greeting">MAAM GOOD MORNING MAAM SIR GOOD MORNING SIR!</h2>
+  <p id="officer-name">C/PVT (name of cadet) asking for permission to make a statement on behalf of the medics unit for the
+  assignment to send safety precautions every 20 minutes.</p>
+  <p id="Weather-forecast">Weather forecast for this morning according to DOST-PAGASA, Metro Manila will experience.</p>
 
   <div class="weather-box">
     <p><b>Temperature:</b> <span id="temp"></span> °C</p>
     <p><b>Heat Index:</b> <span id="heat"></span> °C</p>
-    <p><b>Wind Speed:</b> <span id="wind"></span> km/h</p>
-    <p><b>Precipitation (POP):</b> <span id="pop"></span> mm</p>
+    <p><b>Wind:</b> <span id="wind"></span> direction-km/h</p>
+    <p><b>(POP):</b> <span id="pop"></span> mm</p>
     <p><b>Max UV Index:</b> <span id="uv"></span></p>
   </div>
 
   <p id="time"></p>
   <p id="valid-until"></p>
   <p id="source">Source: Open-Meteo (https://open-meteo.com)</p>
-  <p>Thank you and stay safe!</p>
+  <p>MAAM THANK YOU MAAM SIR THANK YOU SIR</p>
 
   <script>
     async function getWeather() {
