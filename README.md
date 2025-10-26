@@ -42,13 +42,13 @@
 
   <p id="time"></p>
   <p id="valid-until"></p>
-  <p id="source">Source: Open-Meteo (https://open-meteo.com)</p>
+  <p id="source">Source: DOST-PAGASA (https://www.pagasa.dost.gov.ph)</p>
   <p>MAAM THANK YOU MAAM SIR THANK YOU SIR</p>
 
   <script>
     async function getWeather() {
       try {
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=14.6&longitude=121.0&current_weather=true";
+        const url = "https://www.pagasa.dost.gov.ph";
         const response = await fetch(url);
         const data = await response.json();
 
